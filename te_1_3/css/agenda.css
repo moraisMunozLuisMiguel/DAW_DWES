@@ -1,0 +1,30 @@
+body {
+  background: rgb(248, 249, 250);
+}
+
+div#uno {
+  margin: 10px;
+  padding: 10px;
+  height: 10px;
+  width: 500px;
+  color: rgb(40, 7, 160);
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  background: rgb(248, 249, 250);
+}
+
+div#dos {
+  border: 2px solid #000000;
+  margin: 10px;
+  padding: 10px;
+  height: 200px;
+  width: 500px;
+  background: rgb(49, 88, 172);
+  color: rgb(243, 245, 247);
+}
+
+.azul {
+  color: rgb(21, 9, 128);
+  font-weight: bold;
+}
