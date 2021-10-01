@@ -6,7 +6,7 @@
    <title>Agenda Actividades</title>
    <?php
    /* 
-   La función que compruenba que la actividad existe está separadas del  formulario
+   La función que compruenba que la actividad existe está separada del  formulario
    */
    include('funciones.inc');
    ?>
@@ -38,31 +38,25 @@
             Si el nombre de actividad está vacío, se mostrará una advertencia.
             Si el nombre de actividad que se introdujo no existe en la agenda, y el campo hora está completado, se añadirá a la agenda.
             Si el nombre que se introdujo ya existe en la agenda y se indica una nueva hora, se sustituirá la hora de inicio anterior.
-Si el nombre de la actividad que se introdujo ya existe en la agenda y no se indica la hora de inicio, se eliminará de la agenda la entrada correspondiente a esa actividad.
+            Si el nombre de la actividad que se introdujo ya existe en la agenda y no se indica la hora de inicio, se eliminará de la agenda la entrada correspondiente a esa actividad.
             */
             $hora = $_POST['hora'];
             // Comprobamos si existe o si el índice es 0 (el primer registro)
-            // Hacemos una comprobación estricta ya que si $i tiene el valor FALSE
-            // ese valor es igual a 0, pero estrictamente 0 no es igual que FALSE
             if ($si || $si === 0) {
-               // Si la actividad existe quiere decir que tenemos que cambiar su hora
-               // Cambiamos el valor para el índice del array siguiente al encontrado
-               // ya que en $i es donde se encuentra la actividad y en $i+1 es donde está la hora
+               // Si la actividad existe hay que cambiar su hora
+               // $i es donde se encuentra la actividad y en $i+1 es donde está la hora
                $array[$si + 1] = $hora;
             } else {
-               // Si la actividad es nueva con horario los almacenamos en la últimas
-               // posiciones del array
+               /* Si la actividad es nueva y tiene horario se almacena en la últimas posiciones del array */
                $array[$pos] = $actividad;
                $array[$pos + 1] = $hora;
             }
          } else {
             // Hay actividad sin hora, se inicializa a NULL
             $hora = NULL;
-            // Comprobamos si la actividad existe ya
+            // Comprobamos si la actividad existe 
             $si = existe($array, $actividad);
             // Comprobamos si existe o si el índice es 0 (el primer registro)
-            // Hacemos una comprobación estricta ya que si $i tiene el valor FALSE
-            // ese valor es igual a 0, pero estrictamente 0 no es igual que FALSE
             if ($si || $si === 0) {
                // Si existe la actividad y no se ha introducido hora se elimina el registro
                unset($array[$si]);
@@ -87,14 +81,7 @@ Si el nombre de la actividad que se introdujo ya existe en la agenda y no se ind
    </div>
 
    <div id="uno">Nueva Actividad</div>
-   <div id="dos"><?php
-                  // Función para comprobar si un nombre existe en el array
-                  //function existe($miArray, $miNom)
-                  //{
-                  //$posicion = array_search($miNom, $miArray, false);
-                  //return $posicion;
-                  //}
-                  ?>
+   <div id="dos">
 
       <!-- Creamos un formulario para enviar sus datos por POST a la misma página -->
       <form name="formulario" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
