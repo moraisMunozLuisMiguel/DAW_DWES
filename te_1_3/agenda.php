@@ -8,7 +8,7 @@
    /* 
    La función que compruenba que la actividad existe está separada del  formulario
    */
-   include('funciones.inc');
+   include('funciones.inc.php');
    ?>
    <link rel="stylesheet" href=".\css\agenda.css">
 </head>
@@ -18,58 +18,59 @@
    <div id="dos">
       <?php
 
+      // Si el array agenda contiene  datos
       if (!empty($_POST['agenda'])) {
-         // Array con todos los datos antiguos indicándole que están separados por coma 
+         /* Array con los datos introducidos separados por coma 
+         explode pasa la cadena a array  */
          $array = explode(",", $_POST['agenda']);
-         // $pos número de elementos almacenados
+         // $pos número de elementos almacenados el array
          $pos = count($array);
       } else {
-         // Si no hay datos antiguos, reiniciamos las variables globales
+         // Si el array agenda está vacío, reiniciamos las variables globales
          $array = array();
          $pos = 0;
       }
+
+      // Si el campo actividad NO está vacío,
       if (!empty($_POST['actividad'])) {
          $actividad = $_POST['actividad'];
          // Si la actividad existe, almacenamos su índice 
          $si = existe($array, $actividad);
+         // Si el campo hora NO está vacío
          if (!empty($_POST['hora'])) {
-            // Hay actividad y hora
-            /* 
-            Si el nombre de actividad está vacío, se mostrará una advertencia.
-            Si el nombre de actividad que se introdujo no existe en la agenda, y el campo hora está completado, se añadirá a la agenda.
-            Si el nombre que se introdujo ya existe en la agenda y se indica una nueva hora, se sustituirá la hora de inicio anterior.
-            Si el nombre de la actividad que se introdujo ya existe en la agenda y no se indica la hora de inicio, se eliminará de la agenda la entrada correspondiente a esa actividad.
-            */
             $hora = $_POST['hora'];
-            // Comprobamos si existe o si el índice es 0 (el primer registro)
+            /* 
+            Si el nombre que se introdujo ya existe en la agenda y se indica una nueva hora, se sustituirá la hora de inicio anterior. Si el índice es 0 (primer registro) hay que cambiar la hora 
+            */
             if ($si || $si === 0) {
-               // Si la actividad existe hay que cambiar su hora
-               // $i es donde se encuentra la actividad y en $i+1 es donde está la hora
                $array[$si + 1] = $hora;
             } else {
-               /* Si la actividad es nueva y tiene horario se almacena en la últimas posiciones del array */
+               /* Si el nombre de actividad que se introdujo no existe (es nueva) en la agenda, y el campo hora está completado, se añadirá a la agenda, se almacena en la últimas posiciones del array 
+               */
                $array[$pos] = $actividad;
                $array[$pos + 1] = $hora;
             }
          } else {
-            // Hay actividad sin hora, se inicializa a NULL
+            // Si la actividad existe sin hora, se inicializa a NULL
             $hora = NULL;
-            // Comprobamos si la actividad existe 
             $si = existe($array, $actividad);
             // Comprobamos si existe o si el índice es 0 (el primer registro)
             if ($si || $si === 0) {
-               // Si existe la actividad y no se ha introducido hora se elimina el registro
+               /*Si el nombre de la actividad que se introdujo ya existe en la agenda y no se indica la hora de inicio, se eliminará de la agenda la entrada correspondiente a esa actividad, se elimina el registro y se reorganiza el array 
+               */
                unset($array[$si]);
                unset($array[$si + 1]);
-               // Una vez eliminado esos índices se reorganiza el array
                $array = array_values($array);
             }
          }
       } else {
-         // NO hemos introducido ninguna actividad
-
+         // Si el campo actividad está vacío, se mostrará una advertencia
+         echo "<p>NO HA INTRODUCIDO ACTIVIDAD</p>";
       }
-      // Si hay datos que mostrar, lo hacemos
+
+
+
+      // Si hay datos, se muestran
       if (count($array) > 1) {
          // Mostramos una fila de la tabla por cada dato a presentar
          for ($i = 0; $i < count($array); $i += 2) {
@@ -92,19 +93,17 @@
          <p class="azul">Hora:
             <input type="time" name="hora" type="text" /><br />
          </p>
-         <!-- Creamos un campo oculto para enviar los datos ya recogidos con anterioridad -->
-         <input name="agenda" type="hidden" value="<?php if (isset($array)) echo implode(",", $array) ?>" /> <input type="submit" name="nuevaActividad" value="Añadir Actividad" /><br /><br />
+         <!-- Creamos un campo oculto para enviar los datos  -->
+         <!-- implode separa cada elemento del array  -->
+         <input name="agenda" type="hidden" value="<?php if (isset($array)) echo implode(",", $array) ?>" />
+         <input type="submit" name="nuevaActividad" value="Añadir Actividad" /><br /><br />
 
       </form>
       <?php
-      var_dump($array);
-      if (!empty($_POST['agenda'])) {
-         if (empty($_POST['actividad'])) {
-            echo "<p>NO HA INTRODUCIDO LA ACTIVIDAD</p>";
-         }
-      }
+      /*  Para comprobar que los datos se han guardado en el array agenda se puede descomentar la función  var_dump() para mostrar la estructura, tipo y valor del array
+       var_dump($array);
+      */
       ?>
-
 
    </div>
 </body>

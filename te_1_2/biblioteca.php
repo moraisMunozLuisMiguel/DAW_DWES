@@ -9,7 +9,7 @@
    /* 
    Las funciones que chequean la dirección de correo, la fecha y el DNI están separadas del formulario 
    */
-   include_once('funciones.inc');
+   include_once('funciones.inc.php');
    ?>
 </head>
 
