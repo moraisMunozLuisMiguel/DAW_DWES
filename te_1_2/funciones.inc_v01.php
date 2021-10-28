@@ -1,5 +1,5 @@
 <?php
-// He utilizado el filtro FILTER_VALIDATE_EMAIL para validar la dirección de correo electrónico
+// He utilizado el filtro FILTER_VALIDATE_EMAIL fpara validar la dirección de correo electrónico
 function comprobar_email($email)
 {
    return (filter_var($email, FILTER_VALIDATE_EMAIL)) ? 1 : 0;
