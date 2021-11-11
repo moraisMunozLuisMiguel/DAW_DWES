@@ -1,0 +1,53 @@
+body { 
+    font-family: Verdana; 
+    font-size: 12px; 
+    color: rgb(18, 27, 156); 
+} 
+ 
+
+h1, h2 {
+    text-align:center
+    }
+.form2
+    {
+    width:400px;
+	color:white;
+    border:2px solid  rgb(18, 27, 156); 
+    background-color: rgb(92, 102, 256);
+    padding:14px;
+    margin: auto;
+    }
+	
+.form1
+    {
+    width:400px;
+    border:2px solid  rgb(18, 27, 156); 
+    background-color: rgb(92, 102, 256);
+    padding:14px;
+    margin: auto;
+    }
+	
+
+	
+label
+    {
+        display: block;
+        margin: .5em 0 0 0;
+        width: 25%;
+        float: left;
+        color:rgb(18, 27, 156); 
+        font-weight: bold;
+    }
+    
+input
+    {
+        display: block;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+     
+button
+{
+    margin: auto;
+}
+
