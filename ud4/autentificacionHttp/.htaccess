@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName  "Contenido"
+AuthUserFile  C:\xampp\contrasena\pass
+Require user luis

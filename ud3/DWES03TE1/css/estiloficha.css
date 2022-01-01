@@ -1,0 +1,97 @@
+*{
+    border: 0;
+    padding:0;
+}
+body {
+    background: #f8f8f8;
+    font-family: 'Roboto', sans-serif;
+    height:900 px;
+}
+
+main.contenedor {
+    background: #227892;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height:100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 15% 45% 40%;
+    display: grid;
+    grid-template-areas:        
+        "header header header header"        
+        "section section section section"
+        "section2 section2 section2 section2";
+     row-gap: 30px;
+     }
+
+
+header  {
+    grid-area: header;  
+    background-color: rgba(145, 185, 182, 0.438);
+    text-align: center;
+    display:grid;
+    grid-gap: 5px;
+    border: black 5px solid;
+    grid-template-columns: 10% auto;
+      }
+header img{
+ padding: 12px;   
+ text-align: center;
+}
+.mostrar {grid-area: section; 
+    grid-gap: 5px;
+    border: black 5px solid;
+    background-color: cadetblue;
+    }
+
+.anadir {grid-area: section2; 
+    background-color: cadetblue;
+    grid-gap: 5px;
+    border: black 5px solid;
+    }
+
+
+aside  {grid-area: aside;   }
+footer  {grid-area: footer;    }
+
+.table-scroll{
+    overflow:auto;  
+    margin: auto;
+    height:90%;
+    width:500px;
+}
+
+table th {background-color: rgb(24, 43, 54);
+color: white; }
+
+table tr:nth-child(odd) {background-color: rgb(12, 112, 158);}
+table tr:nth-child(even) {background-color: rgb(112, 34, 60);}
+table button{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#050101;
+    text-align:center;
+    transition: all 0.2s;
+
+}
+
+table button:hover{
+    color:#000000;
+    background-color:#88a2b8;
+    }
+
+.formulario{
+    padding: 1em;
+    background: #a8a4a4;
+    border: 1px solid #c1c1c1;
+    margin-top: 0.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.25em;
+}
