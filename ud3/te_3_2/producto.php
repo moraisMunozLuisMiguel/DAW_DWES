@@ -5,6 +5,21 @@ include("conectar.php");
 $bd = new BaseDatos();
 $conexion = $bd->conectar();
 
+session_start();
+$timeout_duration=60;
+if (!isset($_SESSION['logeado'])){
+  header('Location: login.php');
+  exit;
+}
+else{
+  $tiempo_limite=$_SESSION['logeado'] + $timeout_duration;
+  $time=time();
+  if ($tiempo_limite < $time) {
+    session_unset();
+    header('Location: login.php');
+    exit;
+  }
+}
 function eliminar_cesta($idProducto){
    global $bd;
   $sql="UPDATE cesta_lineas SET cantidad=0 WHERE IdProducto=".$idProducto;
@@ -14,6 +29,7 @@ function eliminar_cesta($idProducto){
 if (isset($_GET['eliminar_cesta'])) {
    eliminar_cesta($_GET['eliminar_cesta']);
 }
+
 
 function actualizar_cesta($idProducto, $cantidad){
   global $bd;

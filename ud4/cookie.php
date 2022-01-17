@@ -27,7 +27,7 @@
 				echo("Cookie 2: ".$_COOKIE['cookie2']);
 			}
 		?>
-		<form action="cookie.php" methog="GET">
+		<form action="cookie.php" method="GET">
 			<button name="eliminar">ELIMINAR cookie</button>
 		</form>
 	</body>

@@ -15,7 +15,7 @@ class BaseDatos{
         $this->user = "root";
         $this->host = "localhost";
         $this->pass = "root";
-        $this->db = "ud04";
+        $this->db = "login";
     }
     public function conectar(){
   

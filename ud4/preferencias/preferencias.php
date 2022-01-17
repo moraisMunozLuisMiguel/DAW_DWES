@@ -32,7 +32,7 @@
         $zon = $_SESSION['preferencias']['zona'] = $zona[0];
     }
 ?>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
     <head>
         <!-- El contenido será una página html con caracteres utf-8 -->

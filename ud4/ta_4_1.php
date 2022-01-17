@@ -35,7 +35,7 @@ if (isset($_COOKIE['visitas'])){
 
 ?>
 
-<form action="ta_4_1.php" methog="GET">
+<form action="ta_4_1.php" method="GET">
     <button name="eliminar">Eliminar cookies</button>
 </form>
 </body>
