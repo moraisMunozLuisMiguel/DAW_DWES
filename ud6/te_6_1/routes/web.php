@@ -20,3 +20,9 @@ Route::get('inicio', 'App\Http\Controllers\pagesController@inicio')->name('inici
 Route::get('producto', 'App\Http\Controllers\pagesController@producto')->name('producto_ruta');
 
 Route::get('cesta', 'App\Http\Controllers\pagesController@cesta')->name('cesta_ruta');
+
+Route::post('guardar', 'App\Http\Controllers\pagesController@guardar')->name('guardar_ruta');
+
+Route::post('anadir', 'App\Http\Controllers\pagesController@anadir')->name('anadir_ruta');
+
+Route::post('modificar', 'App\Http\Controllers\pagesController@modificar')->name('modificar_ruta');

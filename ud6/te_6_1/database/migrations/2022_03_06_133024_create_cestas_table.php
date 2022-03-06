@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('cestas', function (Blueprint $table) {
             $table->id();
+            $table->string('productoNombre');
+            $table->integer('cantidad');
+            $table->float('precio');
+            $table->float('importe');
             $table->timestamps();
         });
     }
