@@ -46,7 +46,7 @@ class pagesController extends Controller
         $cesta->productoNombre = $request->input("productoNombre");
         $cesta->cantidad = 1;
         $cesta->precio = $request->input("precio");
-        $cesta->importe = 0;
+        $cesta->importe = $cesta->precio * $cesta->cantidad;
         $cesta->save();
         $total = Cesta::all()->count();
         $sumImporte = DB::table('cestas')->sum('importe');
@@ -57,11 +57,12 @@ class pagesController extends Controller
 
     public function modificar(Request $request)
     {
-        $productoNombre = $request->input("productoNombre");
-        $nuevaCantidad = $request->input("nuevaCantidad");
-        DB::table('cestas')->where('productoNombre', $productoNombre)->update(['cantidad' => $nuevaCantidad]);
-        if ($nuevaCantidad == 0) {
-            DB::table('cestas')->where('productoNombre', $productoNombre)->delete();
+        $id = $request->input("id");
+        $cantidad = $request->input("nuevaCantidad");
+        $precio = $request->input('precio');
+        $nuevoImporte =  DB::table('cestas')->where('id', $id)->update(['cantidad' => $cantidad, 'importe' => $precio * $cantidad]);
+        if ($cantidad == 0) {
+            DB::table('cestas')->where('id', $id)->delete();
         }
         $total = Cesta::all()->count();
         $sumImporte = DB::table('cestas')->sum('importe');

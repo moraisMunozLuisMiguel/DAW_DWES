@@ -18,10 +18,11 @@
                     <th>{{$item->productoNombre}}</th>
                     <th>{{$item->cantidad}}</th>
                     <th>{{$item->precio}}</th>
-                    <!--<th>{{$item->importe}}</th>-->
-                    <th>{{$item->cantidad*$item->precio}}</th>
+                    <th>{{$item->precio*$item->cantidad}}</th>
+                    <th><input type="hidden" name="id" value={{$item->id}}></th>
                     <th><input type="hidden" name="productoNombre" value={{$item->productoNombre}}></th>
-                    <th><input type="text" name="nuevaCantidad"></th>
+                    <th><input type="hidden" name="precio" value={{$item->precio}}></th>
+                    <th><input type="number" name="nuevaCantidad"></th>
                     <th><button type="submit" name="modificar" class="btn btn-primary">Modificar</button></th>
                 </tr>
             </form>

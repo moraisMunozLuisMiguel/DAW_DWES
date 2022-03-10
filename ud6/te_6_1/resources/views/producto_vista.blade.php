@@ -15,6 +15,9 @@
                 <tr>
                     <th>{{$item->productoNombre}}</th>
                     <th>{{$item->precio}}</th>
+
+                    <input type="hidden" name="id" value={{$item->id}}></th>
+
                     <input type="hidden" name="productoNombre" value={{$item->productoNombre}}></th>
                     <input type="hidden" name="precio" value={{$item->precio}}></th>
                     <th><button type="submit" name="anadir" class="btn btn-primary">Añadir</button></th>
