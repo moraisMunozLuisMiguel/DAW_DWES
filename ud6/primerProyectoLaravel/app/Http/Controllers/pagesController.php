@@ -12,7 +12,8 @@ class pagesController extends Controller
     //
     public function inicio()
     {
-        return view('welcome');
+        //return view('welcome');
+        return view('intro_vista');
     }
 
     public function alumno()

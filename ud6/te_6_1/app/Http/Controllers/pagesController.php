@@ -9,7 +9,7 @@ use Illuminate\support\Facades\DB;
 
 class pagesController extends Controller
 {
-    //
+
     public function inicio()
     {
         return view('inicio_vista');
@@ -42,12 +42,20 @@ class pagesController extends Controller
 
     public function anadir(Request $request)
     {
-        $cesta = new Cesta;
-        $cesta->productoNombre = $request->input("productoNombre");
-        $cesta->cantidad = 1;
-        $cesta->precio = $request->input("precio");
-        $cesta->importe = $cesta->precio * $cesta->cantidad;
-        $cesta->save();
+        $productoNombre = $request->input("productoNombre");
+        $total = DB::table('cestas')->where('productoNombre', 'like', $productoNombre)->get()->count();
+        if ($total == 0) {
+            $cesta = new Cesta;
+            $cesta->productoNombre = $request->input("productoNombre");
+            $cesta->cantidad = 1;
+            $cesta->precio = $request->input("precio");
+            $cesta->importe = $cesta->precio * $cesta->cantidad;
+            $cesta->save();
+        } else {
+            $precio = $request->input("precio");
+            $cantidad = (DB::table('cestas')->where('productoNombre', $productoNombre)->sum('cantidad')) + 1;
+            $nuevaCantidadImporte =  DB::table('cestas')->where('productoNombre', $productoNombre)->update(['cantidad' => $cantidad, 'importe' => $precio * $cantidad]);
+        }
         $total = Cesta::all()->count();
         $sumImporte = DB::table('cestas')->sum('importe');
         $filtro = 0;
